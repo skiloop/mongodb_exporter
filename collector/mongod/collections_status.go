@@ -130,8 +130,8 @@ func GetCollectionStatList(session *mgo.Session) *CollectionStatList {
 			collStatus.Database = db
 			collStatus.Name = collection_name
 			if err != nil {
-				log.Error("Failed to get collection status.")
-				return nil
+				log.Debugf("Failed to get collection status: db=%s, coll=%s, error=%s", db, collection_name, err.Error())
+				continue
 			}
 			collectionStatList.Members = append(collectionStatList.Members, collStatus)
 		}
